@@ -29,9 +29,15 @@ for (var i = 0; i <16; i++) {
 // In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
 var i=0;
 var fine=false;
+var totale = 0;
 var arrayutente = [];
 while (i<10 && fine==false) {
-  var numeroutente = prompt("Inserisci un numero compreso tra 1 e 100:");
+  var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
+  // La partita termina quando il giocatore inserisce un numero “vietato”
+  if (numeroutente > 100 || numeroutente < 1) {
+    alert("Partita Terminata: numero non valido");
+    fine = true;
+  }
   // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
   for (var j = 0; j < arraypc.length; j++) {
     if (arraypc[j] == numeroutente) {
@@ -47,7 +53,13 @@ while (i<10 && fine==false) {
     i--;
   }
   i++;
+  totale += 1;
+  //La partita termina quando il giocatore raggiunge il numero massimo possibile di numeri consentiti.
+  if (i >= 10) {
+    alert("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
+    fine = true;
+  }
 }
+//Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 console.log(arrayutente);
-
-// La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
+alert("Punteggio: " + totale);
