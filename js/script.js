@@ -15,10 +15,10 @@
 // Il computer deve generare 16 numeri casuali tra 1 e 100.
 var arraypc = [];
 for (var i = 0; i < 16; i++) {
-  numeropc= Math.floor(Math.random() * 100) + 1;
+  numeropc= randomNumber();
   console.log(numeropc);
   // I numeri non possono essere duplicati.
-  var bool = NumExistInArray(numeropc);
+  var bool = NumExistInArray(arraypc,numeropc);
   if (bool==false) {
     arraypc.push(numeropc);
   }else {
@@ -46,14 +46,15 @@ while (i<10 && fine==false) {
     }
   }
   //L’utente non può inserire più volte lo stesso numero.
-  var bool = arrayutente.includes(numeroutente);
+  var bool = NumExistInArray(arrayutente , numeroutente);
   if (bool==false) {
     arrayutente.push(numeroutente);
+    totale += 1;
   }else {
     i--;
   }
   i++;
-  totale += 1;
+
   //La partita termina quando il giocatore raggiunge il numero massimo possibile di numeri consentiti.
   if (i >= 10) {
     alert("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
@@ -62,17 +63,22 @@ while (i<10 && fine==false) {
 }
 //Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 console.log(arrayutente);
-alert("Punteggio: " + totale);
+if (fine==false) {
+  alert("Punteggio: " + totale);
+}
+
 
 //------------------------------------------------------------------------------
-function NumExistInArray(numero) {
-  var bool=false;
-  var array = [];
-  for (var i = 0; i < 16; i++) {
-    if (array[i]==numero) {
-      return true;
-    }else {
-       return false;
+function randomNumber() {
+  return Math.floor(Math.random() * 100) + 1;
+}
+
+function NumExistInArray(array , n) {
+	var bool = false;
+  for(var i=0; i<array.length; i++) {
+  	if(array[i] == n) {
+    	bool = true;
     }
   }
+  return bool;
 }
