@@ -25,26 +25,13 @@ for (var i = 0; i < 16; i++) {
     i--;
   }
 }
-  console.log(arraypc);
+console.log(arraypc);
 // In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
 var i=0;
-var fine=false;
 var totale = 0;
 var arrayutente = [];
-while (i<10 && fine==false) {
+do {
   var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
-  // La partita termina quando il giocatore inserisce un numero “vietato”
-  if (numeroutente > 100 || numeroutente < 1) {
-    alert("Partita Terminata: numero non valido");
-    fine = true;
-  }
-  // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
-  for (var j = 0; j < arraypc.length; j++) {
-    if (arraypc[j] == numeroutente) {
-      alert("Partita Terminata");
-      fine = true;
-    }
-  }
   //L’utente non può inserire più volte lo stesso numero.
   var bool = NumExistInArray(arrayutente , numeroutente);
   if (bool==false) {
@@ -53,18 +40,32 @@ while (i<10 && fine==false) {
   }else {
     i--;
   }
+  // La partita termina quando il giocatore inserisce un numero “vietato”
+  var numerovietato=false;
+  numerovietato = numberInvalid(numeroutente);
+  //La partita termina quando il giocatore raggiunge il numero massimo possibile di numeri consentiti.
+  var nummax=false
+  if (i >= 9) {
+    nummax = true;
+  }
+  // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
+  var numerocorretto=false
+  numerocorretto = endprogram(arraypc , numeroutente);
+
   i++;
 
-  //La partita termina quando il giocatore raggiunge il numero massimo possibile di numeri consentiti.
-  if (i >= 10) {
-    alert("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
-    fine = true;
-  }
+}while (i<10 && numerovietato == false && numerocorretto == false);
+
+console.log(arrayutente);
+if (numerovietato==true) {
+  console.log("Partita Terminata: numero non valido");
+}
+if (nummax==true) {
+  console.log("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
 }
 //Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-console.log(arrayutente);
-if (fine==false) {
-  alert("Punteggio: " + totale);
+if (numerocorretto==true) {
+  console.log("Partita Terminata: Punteggio totale: " + totale);
 }
 
 
@@ -78,6 +79,24 @@ function NumExistInArray(array , n) {
   for(var i=0; i<array.length; i++) {
   	if(array[i] == n) {
     	bool = true;
+    }
+  }
+  return bool;
+}
+
+function numberInvalid(numero) {
+  if (numeroutente > 100 || numeroutente < 1) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function endprogram(array , numero) {
+  var bool=false;
+  for (var j = 0; j < array.length; j++) {
+    if (array[j] == numero) {
+      bool= true;
     }
   }
   return bool;
