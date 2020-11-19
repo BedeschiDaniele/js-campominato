@@ -14,11 +14,11 @@
 
 // Il computer deve generare 16 numeri casuali tra 1 e 100.
 var arraypc = [];
-for (var i = 0; i <16; i++) {
+for (var i = 0; i < 16; i++) {
   numeropc= Math.floor(Math.random() * 100) + 1;
   console.log(numeropc);
   // I numeri non possono essere duplicati.
-  var bool = arraypc.includes(numeropc);
+  var bool = NumExistInArray(numeropc);
   if (bool==false) {
     arraypc.push(numeropc);
   }else {
@@ -63,3 +63,16 @@ while (i<10 && fine==false) {
 //Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 console.log(arrayutente);
 alert("Punteggio: " + totale);
+
+//------------------------------------------------------------------------------
+function NumExistInArray(numero) {
+  var bool=false;
+  var array = [];
+  for (var i = 0; i < 16; i++) {
+    if (array[i]==numero) {
+      return true;
+    }else {
+       return false;
+    }
+  }
+}
