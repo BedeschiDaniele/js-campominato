@@ -62,7 +62,7 @@ do {
   var numerocorretto=false
   numerocorretto = endprogram(arraypc , numeroutente);
   i++;
-}while (i<84 && numerovietato == false && numerocorretto == false);
+}while (i<=maxnuminsert && numerovietato == false && numerocorretto == false);
 
 console.log(arrayutente);
 if (numerovietato==true) {

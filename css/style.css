@@ -14,23 +14,32 @@ h2 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#start {
-    padding: 50px 220px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #ee0303;
-    font-size: 86px;
-    margin-bottom: 50px;
-    position: absolute;
+.btn-hover.color{
+    background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
 }
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
 }
+.btn-hover {
+    width: 250px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 75px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
 
-/* .area-bomb {
-  width: 40%;
-  height: 640px;
-  background-color: lightgray;
-  border: 1px solid gray;
-  margin: auto;
-  margin-top: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  text-align: center;
-} */
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
