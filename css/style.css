@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-image: url('https://store-images.s-microsoft.com/image/apps.14541.14487568773448537.eefbf3e0-fd25-4d51-bbe4-457475ed6752.7ec24493-0f1f-4c58-957b-149d6eb4ddcd?mode=scale&q=90&h=1080&w=1920');
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: white;
+}
+h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#start {
+    padding: 50px 220px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ee0303;
+    font-size: 86px;
+    margin-bottom: 50px;
+    position: absolute;
+}
+}
+
+/* .area-bomb {
+  width: 40%;
+  height: 640px;
+  background-color: lightgray;
+  border: 1px solid gray;
+  margin: auto;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+} */

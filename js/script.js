@@ -10,115 +10,59 @@
 // con difficoltà 0 => tra 1 e 100
 // con difficoltà 1 =>  tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
-var diff = parseInt(prompt("Seleziona la difficoltà: 0 => tra 1 e 100  1 =>  tra 1 e 80  2 =>  tra 1 e 50"));
-// con difficoltà 0 => tra 1 e 100
-if (diff==0) {
-  var arraypc = [];
-  for (var i = 0; i < 16; i++) {
-    numeropc= randomNumber();
-    console.log(numeropc);
-    var bool = NumExistInArray(arraypc,numeropc);
-    if (bool==false) {
-      arraypc.push(numeropc);
-    }else {
-      i--;
-    }
-  }
-  console.log(arraypc);
-  var i=0;
-  var totale = 0;
-  var arrayutente = [];
-  do {
-    var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
-    var bool = NumExistInArray(arrayutente , numeroutente);
-    if (bool==false) {
-      arrayutente.push(numeroutente);
-      totale += 1;
-    }else {
-      i--;
-    }
-
-    var numerovietato=false;
-    numerovietato = numberInvalid(numeroutente);
-    var nummax=false;
-    nummax = NumMax();
-    var numerocorretto=false
-    numerocorretto = endprogram(arraypc , numeroutente);
-    i++;
-  }while (i<84 && numerovietato == false && numerocorretto == false);
+var diff = parseInt(prompt("Seleziona la difficoltà: \n 0 => tra 1 e 100 \n 1 =>  tra 1 e 80 \n 2 =>  tra 1 e 50"));
+var number;
+var maxnumber;
+var maxnuminsert;
+switch (diff) {
+  case 1:
+    maxnumber=80;
+    number = 12;
+    maxnuminsert=63;
+    break;
+  case 2:
+    maxnumber=50;
+    number = 8;
+    maxnuminsert=33;
+    break;
+  default:
+  maxnumber=100;
+  number = 16;
+  maxnuminsert=83;
 }
-// con difficoltà 1 =>  tra 1 e 80
-if (diff==1) {
-  var arraypc = [];
-  for (var i = 0; i < 12; i++) {
-    numeropc= randomNumber80();
-    console.log(numeropc);
-    var bool = NumExistInArray(arraypc,numeropc);
-    if (bool==false) {
-      arraypc.push(numeropc);
-    }else {
-      i--;
-    }
+var arraypc = [];
+for (var i = 0; i < number; i++) {
+  numeropc= randomNumber(maxnumber);
+  console.log(numeropc);
+  var bool = NumExistInArray(arraypc,numeropc);
+  if (bool==false) {
+    arraypc.push(numeropc);
+  }else {
+    i--;
   }
-  console.log(arraypc);
-  var i=0;
-  var totale = 0;
-  var arrayutente = [];
-  do {
-    var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 80:"));
-    var bool = NumExistInArray(arrayutente , numeroutente);
-    if (bool==false) {
-      arrayutente.push(numeroutente);
-      totale += 1;
-    }else {
-      i--;
-    }
-
-    var numerovietato=false;
-    numerovietato = numberInvalid80(numeroutente);
-    var nummax=false;
-    nummax = NumMax80();
-    var numerocorretto=false
-    numerocorretto = endprogram(arraypc , numeroutente);
-    i++;
-  }while (i<64 && numerovietato == false && numerocorretto == false);
 }
-// con difficoltà 2 => tra 1 e 50
-if (diff==2) {
-  var arraypc = [];
-  for (var i = 0; i < 8; i++) {
-    numeropc= randomNumber50();
-    console.log(numeropc);
-    var bool = NumExistInArray(arraypc,numeropc);
-    if (bool==false) {
-      arraypc.push(numeropc);
-    }else {
-      i--;
-    }
+console.log(arraypc);
+var i=0;
+var totale = 0;
+var arrayutente = [];
+do {
+  var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
+  var bool = NumExistInArray(arrayutente , numeroutente);
+  if (bool==false) {
+    arrayutente.push(numeroutente);
+    totale += 1;
+  }else {
+    i--;
   }
-  console.log(arraypc);
-  var i=0;
-  var totale = 0;
-  var arrayutente = [];
-  do {
-    var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 50:"));
-    var bool = NumExistInArray(arrayutente , numeroutente);
-    if (bool==false) {
-      arrayutente.push(numeroutente);
-      totale += 1;
-    }else {
-      i--;
-    }
 
-    var numerovietato=false;
-    numerovietato = numberInvalid50(numeroutente);
-    var nummax=false;
-    nummax = NumMax50();
-    var numerocorretto=false
-    numerocorretto = endprogram(arraypc , numeroutente);
-    i++;
-  }while (i<34 && numerovietato == false && numerocorretto == false);
-}
+  var numerovietato=false;
+  numerovietato = numberInvalid(numeroutente , maxnumber);
+  var nummax=false;
+  nummax = NumMax(maxnuminsert);
+  var numerocorretto=false
+  numerocorretto = endprogram(arraypc , numeroutente);
+  i++;
+}while (i<84 && numerovietato == false && numerocorretto == false);
 
 console.log(arrayutente);
 if (numerovietato==true) {
@@ -128,21 +72,12 @@ if (nummax==true) {
   console.log("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
 }
 if (numerocorretto==true) {
-  console.log("Partita Terminata: Punteggio totale: " + totale);
+  console.log("Hai Perso: Punteggio totale: " + totale);
 }
 
 //------------------------------------------------------------------------------
-// Il computer deve generare 16 numeri casuali tra 1 e 100.
-function randomNumber() {
-  return Math.floor(Math.random() * 100) + 1;
-}
-// Il computer deve generare 16 numeri casuali tra 1 e 80.
-function randomNumber80() {
-  return Math.floor(Math.random() * 80) + 1;
-}
-// Il computer deve generare 16 numeri casuali tra 1 e 50.
-function randomNumber50() {
-  return Math.floor(Math.random() * 50) + 1;
+function randomNumber(maxnumber) {
+  return Math.floor(Math.random() * maxnumber) + 1;
 }
 //L’utente non può inserire più volte lo stesso numero.
 function NumExistInArray(array , n) {
@@ -155,22 +90,8 @@ function NumExistInArray(array , n) {
   return bool;
 }
 // La partita termina quando il giocatore inserisce un numero “vietato”
-function numberInvalid(numero) {
-  if (numeroutente > 100 || numeroutente < 1) {
-    return true;
-  }else {
-    return false;
-  }
-}
-function numberInvalid80(numero) {
-  if (numeroutente > 80 || numeroutente < 1) {
-    return true;
-  }else {
-    return false;
-  }
-}
-function numberInvalid50(numero) {
-  if (numeroutente > 50 || numeroutente < 1) {
+function numberInvalid(numero , maxnumber) {
+  if (numeroutente > maxnumber || numeroutente < 1) {
     return true;
   }else {
     return false;
@@ -187,22 +108,8 @@ function endprogram(array , numero) {
   return bool;
 }
 //La partita termina quando il giocatore raggiunge il numero massimo possibile di numeri consentiti.
-function NumMax(){
-  if (i >= 83) {
-     return true;
-  }else {
-    return false;
-  }
-}
-function NumMax80(){
-  if (i >= 63) {
-     return true;
-  }else {
-    return false;
-  }
-}
-function NumMax50(){
-  if (i >= 33) {
+function NumMax(maxnuminsert){
+  if (i >= maxnuminsert) {
      return true;
   }else {
     return false;
