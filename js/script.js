@@ -97,7 +97,7 @@ function NumExistInArray(array , n) {
 }
 // La partita termina quando il giocatore inserisce un numero “vietato”
 function numberInvalid(numero , maxnumber) {
-  if (numeroutente > maxnumber || numeroutente < 1) {
+  if (numero > maxnumber || numero < 1) {
     return true;
   }else {
     return false;
@@ -115,6 +115,7 @@ function endprogram(array , numero) {
 }
 //La partita termina quando il giocatore raggiunge il numero massimo possibile di numeri consentiti.
 function NumMax(maxnuminsert){
+  var i;
   if (i >= maxnuminsert) {
      return true;
   }else {
