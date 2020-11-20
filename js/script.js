@@ -10,70 +10,76 @@
 // con difficoltà 0 => tra 1 e 100
 // con difficoltà 1 =>  tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
-var diff = parseInt(prompt("Seleziona la difficoltà: \n 0 => tra 1 e 100 \n 1 =>  tra 1 e 80 \n 2 =>  tra 1 e 50"));
-var number;
-var maxnumber;
-var maxnuminsert;
-switch (diff) {
-  case 1:
-    maxnumber=80;
-    number = 12;
-    maxnuminsert=63;
-    break;
-  case 2:
-    maxnumber=50;
-    number = 8;
-    maxnuminsert=33;
-    break;
-  default:
-  maxnumber=100;
-  number = 16;
-  maxnuminsert=83;
-}
-var arraypc = [];
-for (var i = 0; i < number; i++) {
-  numeropc= randomNumber(maxnumber);
-  console.log(numeropc);
-  var bool = NumExistInArray(arraypc,numeropc);
-  if (bool==false) {
-    arraypc.push(numeropc);
-  }else {
-    i--;
-  }
-}
-console.log(arraypc);
-var i=0;
-var totale = 0;
-var arrayutente = [];
-do {
-  var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
-  var bool = NumExistInArray(arrayutente , numeroutente);
-  if (bool==false) {
-    arrayutente.push(numeroutente);
-    totale += 1;
-  }else {
-    i--;
-  }
+var element = document.getElementById("start");
+element.addEventListener('click',
+ function() {
+   var diff = parseInt(prompt("Seleziona la difficoltà: \n 0 => tra 1 e 100 \n 1 =>  tra 1 e 80 \n 2 =>  tra 1 e 50"));
+   var number;
+   var maxnumber;
+   var maxnuminsert;
+   switch (diff) {
+     case 1:
+       maxnumber=80;
+       number = 12;
+       maxnuminsert=63;
+       break;
+     case 2:
+       maxnumber=50;
+       number = 8;
+       maxnuminsert=33;
+       break;
+     default:
+     maxnumber=100;
+     number = 16;
+     maxnuminsert=83;
+   }
+   var arraypc = [];
+   for (var i = 0; i < number; i++) {
+     numeropc= randomNumber(maxnumber);
+     console.log(numeropc);
+     var bool = NumExistInArray(arraypc,numeropc);
+     if (bool==false) {
+       arraypc.push(numeropc);
+     }else {
+       i--;
+     }
+   }
+   console.log(arraypc);
+   var i=0;
+   var totale = 0;
+   var arrayutente = [];
+   do {
+     var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
+     var bool = NumExistInArray(arrayutente , numeroutente);
+     if (bool==false) {
+       arrayutente.push(numeroutente);
+       totale += 1;
+     }else {
+       i--;
+     }
 
-  var numerovietato=false;
-  numerovietato = numberInvalid(numeroutente , maxnumber);
-  var nummax=false;
-  nummax = NumMax(maxnuminsert);
-  var numerocorretto=false
-  numerocorretto = endprogram(arraypc , numeroutente);
-  i++;
-}while (i<=maxnuminsert && numerovietato == false && numerocorretto == false);
+     var numerovietato=false;
+     numerovietato = numberInvalid(numeroutente , maxnumber);
+     var nummax=false;
+     nummax = NumMax(maxnuminsert);
+     var numerocorretto=false
+     numerocorretto = endprogram(arraypc , numeroutente);
+     i++;
+   }while (i<=maxnuminsert && numerovietato == false && numerocorretto == false);
 
-console.log(arrayutente);
-if (numerovietato==true) {
-  console.log("Partita Terminata: numero non valido");
-}
-if (nummax==true) {
-  console.log("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
-}
-if (numerocorretto==true) {
-  console.log("Hai Perso: Punteggio totale: " + totale);
-}
+   console.log(arrayutente);
+   if (numerovietato==true) {
+     console.log("Partita Terminata: numero non valido");
+   }
+   if (nummax==true) {
+     console.log("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
+   }
+   if (numerocorretto==true) {
+     console.log("Hai Perso: Punteggio totale: " + totale);
+   }
+ }
+);
+
 
 //------------------------------------------------------------------------------
 function randomNumber(maxnumber) {
