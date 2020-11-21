@@ -10,11 +10,22 @@
 // con difficoltà 0 => tra 1 e 100
 // con difficoltà 1 =>  tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
-var element = document.getElementById("start");
+var start = document.getElementById("start");
+var diff_section = document.getElementById("diff_section");
+var startgame = document.getElementById("startgame");
+var difficult = document.getElementById("difficult");
 var diff;
-element.addEventListener('click',
+diff_section.addEventListener('click',
+  function() {
+    start.classList.add("hidden");
+    diff_section.classList.remove("hidden");
+    diff_section.classList.add("show");
+  }
+);
+startgame.addEventListener('click',
  function() {
-   diff = parseInt(prompt("Seleziona la difficoltà: \n 0 => tra 1 e 100 \n 1 =>  tra 1 e 80 \n 2 =>  tra 1 e 50"));
+   // diff = parseInt(prompt("Seleziona la difficoltà: \n 0 => tra 1 e 100 \n 1 =>  tra 1 e 80 \n 2 =>  tra 1 e 50"));
+   diff=difficult.value;
    playgame();
  }
 );
@@ -24,20 +35,21 @@ function playgame () {
   var maxnumber;
   var maxnuminsert;
   switch (diff) {
-    case 1:
+    case "Medium":
       maxnumber=80;
       number = 12;
       maxnuminsert=63;
       break;
-    case 2:
+    case "Easy":
       maxnumber=50;
       number = 8;
       maxnuminsert=33;
       break;
-    default:
-    maxnumber=100;
-    number = 16;
-    maxnuminsert=83;
+    case "Hard":
+      maxnumber=100;
+      number = 16;
+      maxnuminsert=83;
+      break;
   }
   var arraypc = [];
   for (var i = 0; i < number; i++) {
@@ -55,7 +67,7 @@ function playgame () {
   var totale = 0;
   var arrayutente = [];
   do {
-    var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100:"));
+    var numeroutente = parseInt(prompt("Inserisci un numero compreso tra 1 e " + maxnumber +":"));
     var bool = NumExistInArray(arrayutente , numeroutente);
     if (bool==false) {
       arrayutente.push(numeroutente);
@@ -75,13 +87,13 @@ function playgame () {
 
   console.log(arrayutente);
   if (numerovietato==true) {
-    console.log("Partita Terminata: numero non valido");
+    alert("Partita Terminata: numero non valido");
   }
   if (nummax==true) {
-    console.log("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
+    alert("Partita Terminata: hai superato il numero massimo possibile di numeri consentiti");
   }
   if (numerocorretto==true) {
-    console.log("Hai Perso: Punteggio totale: " + totale);
+    alert("Hai Perso: Punteggio totale: " + totale);
   }
 
 }
